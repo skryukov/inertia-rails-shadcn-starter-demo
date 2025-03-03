@@ -7,15 +7,15 @@ image: react_starter_kit
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - 204.48.24.117
 
   # Uncomment to enable SSR:
-  # vite_ssr:
-  #   hosts:
-  #     - 192.168.0.1
-  #   cmd: bundle exec vite ssr
-  #   options:
-  #     network-alias: vite_ssr
+  vite_ssr:
+    hosts:
+      - 204.48.24.117
+    cmd: bundle exec vite ssr
+    options:
+      network-alias: vite_ssr
 
   # job:
   #   hosts:
@@ -29,9 +29,9 @@ servers:
 #
 # Don't use this when deploying to multiple web servers (then you have to terminate SSL at your load balancer).
 #
-# proxy:
-#   ssl: true
-#   host: app.example.com
+proxy:
+  ssl: true
+  host: inertia-shadcn.skryukov.dev
 
 # Where you keep your container images.
 registry:
@@ -55,8 +55,8 @@ env:
     SOLID_QUEUE_IN_PUMA: true
 
     # Uncomment to enable SSR:
-    # INERTIA_SSR_ENABLED: true
-    # INERTIA_SSR_URL: "http://vite_ssr:13714"
+    INERTIA_SSR_ENABLED: true
+    INERTIA_SSR_URL: "http://vite_ssr:13714"
 
     # Set number of processes dedicated to Solid Queue (default: 1)
     # JOB_CONCURRENCY: 3
@@ -96,10 +96,10 @@ asset_path: /rails/public
 builder:
   arch: amd64
   # Uncomment to enable SSR:
-  # dockerfile: Dockerfile-ssr
+  dockerfile: Dockerfile-ssr
   cache:
     type: registry
-    image: your-user/react_starter_kit-build-cache
+    image: react_starter_kit-build-cache
     options: mode=max
 
   # # Build image via remote server (useful for faster amd64 builds on arm64 computers)
