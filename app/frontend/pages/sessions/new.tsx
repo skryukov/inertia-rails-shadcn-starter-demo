@@ -31,6 +31,7 @@ export default function Login() {
                   id="email"
                   name="email"
                   type="email"
+                  defaultValue={"me@example.com"}
                   required
                   autoFocus
                   tabIndex={1}
@@ -55,6 +56,7 @@ export default function Login() {
                   id="password"
                   type="password"
                   name="password"
+                  defaultValue={"password1234"}
                   required
                   tabIndex={2}
                   autoComplete="current-password"
@@ -85,6 +87,12 @@ export default function Login() {
           </>
         )}
       </Form>
+
+      <div className="text-muted-foreground mb-4 text-center text-xs font-medium">
+        Default read-only user: <code>me@example.com / password1234</code>{" "}
+        <br />
+        Database is reset hourly
+      </div>
     </AuthLayout>
   )
 }
