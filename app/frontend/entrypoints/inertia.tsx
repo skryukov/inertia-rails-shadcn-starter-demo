@@ -1,7 +1,7 @@
 import type { ResolvedComponent } from "@inertiajs/react"
 import { createInertiaApp } from "@inertiajs/react"
 import { type ReactNode, StrictMode } from "react"
-import { createRoot } from "react-dom/client"
+import { createRoot, hydrateRoot } from "react-dom/client"
 
 import { initializeTheme } from "@/hooks/use-appearance"
 import PersistentLayout from "@/layouts/persistent-layout"
@@ -39,10 +39,10 @@ void createInertiaApp({
 
   setup({ el, App, props }) {
     // Uncomment the following to enable SSR hydration:
-    // if (el.hasChildNodes()) {
-    //   hydrateRoot(el, <App {...props} />)
-    //   return
-    // }
+    if (el.hasChildNodes()) {
+      hydrateRoot(el, <App {...props} />)
+      return
+    }
     createRoot(el).render(
       <StrictMode>
         <App {...props} />
