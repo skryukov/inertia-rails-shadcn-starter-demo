@@ -20,8 +20,8 @@ export default function Login() {
   const { data, setData, post, processing, errors, reset } = useForm<
     Required<LoginForm>
   >({
-    email: "",
-    password: "",
+    email: "me@example.com",
+    password: "password1234",
     remember: false,
   })
 
@@ -99,6 +99,12 @@ export default function Login() {
           </TextLink>
         </div>
       </form>
+
+      <div className="mb-4 text-center text-xs font-medium text-muted-foreground">
+        Default read-only user: <code>me@example.com / password1234</code>{" "}
+        <br />
+        Database is reset hourly
+      </div>
     </AuthLayout>
   )
 }
