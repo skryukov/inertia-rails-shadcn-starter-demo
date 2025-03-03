@@ -8,7 +8,13 @@ class InertiaController < ApplicationController
         session: -> { Current.session.as_json(only: %i[id]) }
       }
 
+  rescue_from ActiveRecord::ReadOnlyRecord, with: :redirect_back_with_error
+
   private
+
+  def redirect_back_with_error(error)
+    redirect_back(fallback_location: root_path, alert: error.message)
+  end
 
   def inertia_errors(model, full_messages: true)
     {
