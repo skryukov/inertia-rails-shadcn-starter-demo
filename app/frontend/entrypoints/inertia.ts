@@ -1,6 +1,6 @@
 import { createInertiaApp } from "@inertiajs/react"
 import { type ReactNode, createElement } from "react"
-import { createRoot } from "react-dom/client"
+import { createRoot, hydrateRoot } from "react-dom/client"
 
 import { initializeTheme } from "@/hooks/use-appearance"
 
@@ -39,10 +39,10 @@ void createInertiaApp({
   setup({ el, App, props }) {
     if (el) {
       // Uncomment the following to enable SSR hydration:
-      // if (el.hasChildNodes()) {
-      //   hydrateRoot(el, createElement(App, props))
-      //   return
-      // }
+      if (el.hasChildNodes()) {
+        hydrateRoot(el, createElement(App, props))
+        return
+      }
       createRoot(el).render(createElement(App, props))
     } else {
       console.error(
