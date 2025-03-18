@@ -1,3 +1,9 @@
+> [!WARNING]
+> This is a demo application for the [Inertia Rails Starter Kit](https://github.com/skryukov/inertia-rails-shadcn-starter)
+> with deployment and SSR set up, along with a few UI elements to showcase available layouts.
+>
+> Note: This repository is updated via force pushes.
+
 # Inertia Rails React Starter Kit
 
 A modern full-stack starter application with Rails backend and React frontend using Inertia.js based on the [Laravel Starter Kit](https://github.com/laravel/react-starter-kit).
