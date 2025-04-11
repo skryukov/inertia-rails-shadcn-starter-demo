@@ -412,7 +412,7 @@ DEPENDENCIES
   capybara
   debug
   factory_bot_rails
-  inertia_rails (~> 3.6)
+  inertia_rails (~> 3.7)
   jbuilder
   js-routes
   kamal
