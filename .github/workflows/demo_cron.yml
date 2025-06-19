@@ -15,16 +15,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.9.1
+      - name: Setup Kamal Environment
+        uses: ./.github/workflows/setup
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
 
       - name: Run seeds
         run: bundle exec kamal app exec ./bin/rails db:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1
