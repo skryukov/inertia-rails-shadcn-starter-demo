@@ -1,0 +1,54 @@
+name: Kamal Run Command
+
+permissions:
+  id-token: write
+  contents: read
+  packages: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: 'Commands'
+        required: true
+        type: choice
+        options:
+          - proxy reboot --rolling -y
+          - upgrade --rolling -y
+
+      environment:
+        description: 'Environment'
+        required: false
+        type: choice
+        options:
+          - ''
+          - production
+
+jobs:
+  kamal_run_command:
+    name: Kamal run command
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    concurrency:
+      group: ${{ github.event.inputs.environment }}_environment
+      cancel-in-progress: false
+    environment:
+      name: ${{ github.event.inputs.environment }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: Setup Kamal Environment
+        uses: ./.github/workflows/setup
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: kamal ${{ github.event.inputs.command }}${{ github.event.inputs.environment && format(' --destination={0}', github.event.inputs.environment) || '' }}
+        env:
+          KAMAL_REGISTRY_USERNAME: ${{ github.actor }}
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        run: |
+          ./bin/kamal ${{ github.event.inputs.command }}${{ github.event.inputs.environment && format(' --destination={0}', github.event.inputs.environment) || '' }}
