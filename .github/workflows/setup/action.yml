@@ -1,0 +1,24 @@
+name: Setup Kamal Environment
+
+inputs:
+  ssh-private-key:
+    description: SSH Private Key
+    required: true
+
+runs:
+  using: composite
+  steps:
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: .ruby-version
+        bundler-cache: true
+
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.9.1
+      with:
+        ssh-private-key: ${{ inputs.ssh-private-key }}
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
