@@ -1,4 +1,4 @@
-# Inertia Rails Starter Kit
+# Inertia Rails React Starter Kit
 
 A modern full-stack starter application with Rails backend and React frontend using Inertia.js based on the [Laravel Starter Kit](https://github.com/laravel/react-starter-kit).
 
@@ -10,6 +10,9 @@ A modern full-stack starter application with Rails backend and React frontend us
 - [Kamal](https://kamal-deploy.org/) for deployment
 - Optional SSR support
 
+See also:
+- [Svelte Starter Kit](https://github.com/inertia-rails/svelte-starter-kit) for Inertia Rails with Svelte
+- [Vue Starter Kit](https://github.com/inertia-rails/vue-starter-kit) for Inertia Rails with Vue
 
 <a href="https://evilmartians.com/?utm_source=inertia-rails-react-starter-kit&utm_campaign=project_page">
 <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Built by Evil Martians" width="236" height="54">

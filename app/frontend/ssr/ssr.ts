@@ -10,7 +10,7 @@ interface ResolvedComponent {
   default: ReactNode & { layout?: (page: ReactNode) => ReactNode }
 }
 
-const appName = (import.meta.env.VITE_APP_NAME ?? "Rails") as string
+const appName = import.meta.env.VITE_APP_NAME ?? "React Starter Kit"
 
 createServer((page) =>
   createInertiaApp({
