@@ -26,4 +26,4 @@ jobs:
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
-        run: ./bin/kamal app exec ./bin/rails db:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+        run: ./bin/kamal app exec --reuse -r web "./bin/rails db:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1"
